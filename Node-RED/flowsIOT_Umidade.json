@@ -1,0 +1,359 @@
+[
+    {
+        "id": "60c763c3.d8294c",
+        "type": "tab",
+        "label": "IOT_Umidade",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "5ab396c7.135a38",
+        "type": "http in",
+        "z": "60c763c3.d8294c",
+        "name": "",
+        "url": "/listaumidade",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 110,
+        "y": 420,
+        "wires": [
+            [
+                "904251fc.44e16",
+                "f6c5a5c9.39c4c8"
+            ]
+        ]
+    },
+    {
+        "id": "371b603c.e5cc2",
+        "type": "http response",
+        "z": "60c763c3.d8294c",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 370,
+        "y": 560,
+        "wires": []
+    },
+    {
+        "id": "904251fc.44e16",
+        "type": "debug",
+        "z": "60c763c3.d8294c",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "x": 350,
+        "y": 320,
+        "wires": []
+    },
+    {
+        "id": "f6c5a5c9.39c4c8",
+        "type": "cloudant in",
+        "z": "60c763c3.d8294c",
+        "name": "",
+        "cloudant": "",
+        "database": "iot_medidor_umidade",
+        "service": "node-red-vflsh-cloudant-1589287268644-12109",
+        "search": "_all_",
+        "design": "",
+        "index": "",
+        "x": 400,
+        "y": 460,
+        "wires": [
+            [
+                "371b603c.e5cc2"
+            ]
+        ]
+    },
+    {
+        "id": "57ede0c0.55063",
+        "type": "ibmiot in",
+        "z": "60c763c3.d8294c",
+        "authentication": "boundService",
+        "apiKey": "",
+        "inputType": "evt",
+        "logicalInterface": "",
+        "ruleId": "",
+        "deviceId": "medidorufpb",
+        "applicationId": "",
+        "deviceType": "+",
+        "eventType": "+",
+        "commandType": "",
+        "format": "json",
+        "name": "IBM IoT",
+        "service": "registered",
+        "allDevices": "",
+        "allApplications": "",
+        "allDeviceTypes": true,
+        "allLogicalInterfaces": "",
+        "allEvents": true,
+        "allCommands": "",
+        "allFormats": "",
+        "qos": 0,
+        "x": 110,
+        "y": 120,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "a24ed45c.f85a38",
+        "type": "debug",
+        "z": "60c763c3.d8294c",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "x": 350,
+        "y": 60,
+        "wires": []
+    },
+    {
+        "id": "befefc96.fc661",
+        "type": "cloudant out",
+        "z": "60c763c3.d8294c",
+        "name": "",
+        "cloudant": "",
+        "database": "iot_medidor_umidade",
+        "service": "node-red-vflsh-cloudant-1589287268644-12109",
+        "payonly": true,
+        "operation": "insert",
+        "x": 360,
+        "y": 180,
+        "wires": []
+    },
+    {
+        "id": "f460c61.6f75f38",
+        "type": "ibmiot in",
+        "z": "60c763c3.d8294c",
+        "authentication": "boundService",
+        "apiKey": "",
+        "inputType": "evt",
+        "logicalInterface": "",
+        "ruleId": "",
+        "deviceId": "medidorufpb",
+        "applicationId": "",
+        "deviceType": "+",
+        "eventType": "+",
+        "commandType": "",
+        "format": "json",
+        "name": "IBM IoT",
+        "service": "registered",
+        "allDevices": "",
+        "allApplications": "",
+        "allDeviceTypes": true,
+        "allLogicalInterfaces": "",
+        "allEvents": true,
+        "allCommands": "",
+        "allFormats": "",
+        "qos": 0,
+        "x": 90,
+        "y": 1000,
+        "wires": [
+            [
+                "f48e6742.8077c8"
+            ]
+        ]
+    },
+    {
+        "id": "6ac8595d.b25058",
+        "type": "debug",
+        "z": "60c763c3.d8294c",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "x": 430,
+        "y": 1020,
+        "wires": []
+    },
+    {
+        "id": "32a886af.1b1a0a",
+        "type": "cloudant out",
+        "z": "60c763c3.d8294c",
+        "name": "",
+        "cloudant": "",
+        "database": "iot_medidor_umidade",
+        "service": "node-red-vflsh-cloudant-1589287268644-12109",
+        "payonly": true,
+        "operation": "insert",
+        "x": 400,
+        "y": 900,
+        "wires": []
+    },
+    {
+        "id": "f48e6742.8077c8",
+        "type": "delay",
+        "z": "60c763c3.d8294c",
+        "name": "",
+        "pauseType": "rate",
+        "timeout": "5",
+        "timeoutUnits": "seconds",
+        "rate": "10",
+        "nbRateUnits": "1",
+        "rateUnits": "minute",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "x": 200,
+        "y": 1100,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "791b81ae.f14c4",
+        "type": "ibmiot in",
+        "z": "60c763c3.d8294c",
+        "authentication": "boundService",
+        "apiKey": "",
+        "inputType": "evt",
+        "logicalInterface": "",
+        "ruleId": "",
+        "deviceId": "medidorufpb",
+        "applicationId": "",
+        "deviceType": "+",
+        "eventType": "+",
+        "commandType": "",
+        "format": "json",
+        "name": "IBM IoT",
+        "service": "registered",
+        "allDevices": "",
+        "allApplications": "",
+        "allDeviceTypes": true,
+        "allLogicalInterfaces": "",
+        "allEvents": true,
+        "allCommands": "",
+        "allFormats": "",
+        "qos": 0,
+        "x": 90,
+        "y": 1360,
+        "wires": [
+            [
+                "86eaabaf.741768"
+            ]
+        ]
+    },
+    {
+        "id": "5458ac51.c522c4",
+        "type": "cloudant out",
+        "z": "60c763c3.d8294c",
+        "name": "",
+        "cloudant": "",
+        "database": "iot_medidor_umidade",
+        "service": "node-red-vflsh-cloudant-1589287268644-12109",
+        "payonly": true,
+        "operation": "insert",
+        "x": 400,
+        "y": 1260,
+        "wires": []
+    },
+    {
+        "id": "86eaabaf.741768",
+        "type": "delay",
+        "z": "60c763c3.d8294c",
+        "name": "",
+        "pauseType": "rate",
+        "timeout": "5",
+        "timeoutUnits": "seconds",
+        "rate": "10",
+        "nbRateUnits": "30",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "x": 180,
+        "y": 1480,
+        "wires": [
+            [
+                "b9b453b.bbe5cb"
+            ]
+        ]
+    },
+    {
+        "id": "b9b453b.bbe5cb",
+        "type": "join",
+        "z": "60c763c3.d8294c",
+        "name": "",
+        "mode": "custom",
+        "build": "array",
+        "property": "payload",
+        "propertyType": "msg",
+        "key": "topic",
+        "joiner": "\\n",
+        "joinerType": "str",
+        "accumulate": false,
+        "timeout": "",
+        "count": "10",
+        "reduceRight": false,
+        "reduceExp": "",
+        "reduceInit": "",
+        "reduceInitType": "",
+        "reduceFixup": "",
+        "x": 130,
+        "y": 1620,
+        "wires": [
+            [
+                "1ea5cb5b.c11ff5",
+                "576ce342.2eaecc"
+            ]
+        ]
+    },
+    {
+        "id": "1ea5cb5b.c11ff5",
+        "type": "function",
+        "z": "60c763c3.d8294c",
+        "name": "",
+        "func": "var array = msg.sort(function(a,b) {\n    return a.umidade - b.umidade;\n});\nreturn array;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 310,
+        "y": 1660,
+        "wires": [
+            [
+                "576ce342.2eaecc"
+            ]
+        ]
+    },
+    {
+        "id": "576ce342.2eaecc",
+        "type": "debug",
+        "z": "60c763c3.d8294c",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "x": 390,
+        "y": 1780,
+        "wires": []
+    },
+    {
+        "id": "4d186710.140508",
+        "type": "inject",
+        "z": "60c763c3.d8294c",
+        "name": "",
+        "topic": "",
+        "payload": "[{\"umidade\":53},{\"umidade\":17},{\"umidade\":79},{\"umidade\":9},{\"umidade\":35},{\"umidade\":67},{\"umidade\":38},{\"umidade\":36},{\"umidade\":62},{\"umidade\":4}]",
+        "payloadType": "json",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 150,
+        "y": 1820,
+        "wires": [
+            []
+        ]
+    }
+]

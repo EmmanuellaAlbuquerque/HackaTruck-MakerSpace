@@ -1,0 +1,305 @@
+[
+    {
+        "id": "841a5030.b3b67",
+        "type": "tab",
+        "label": "WatsonAssistent",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "fbc5e29d.7037a",
+        "type": "watson-conversation-v1",
+        "z": "841a5030.b3b67",
+        "name": "",
+        "workspaceid": "ba14d93f-1450-4783-9c1e-50c1e671c4d3",
+        "multiuser": false,
+        "context": true,
+        "empty-payload": false,
+        "service-endpoint": "",
+        "timeout": "",
+        "optout-learning": false,
+        "x": 300,
+        "y": 120,
+        "wires": [
+            [
+                "1d11cb24.f569f5"
+            ]
+        ]
+    },
+    {
+        "id": "bced4dc2.24a4",
+        "type": "telegram command",
+        "z": "841a5030.b3b67",
+        "name": "",
+        "command": "/watson",
+        "bot": "6cb8f25f.558b1c",
+        "strict": false,
+        "hasresponse": true,
+        "x": 90,
+        "y": 120,
+        "wires": [
+            [
+                "21a76acd.fe24e6"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "21a76acd.fe24e6",
+        "type": "function",
+        "z": "841a5030.b3b67",
+        "name": "Prepare for Conversation",
+        "func": "msg.chatId = msg.payload.chatId;\nmsg.payload = msg.payload.content;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 170,
+        "y": 220,
+        "wires": [
+            [
+                "fbc5e29d.7037a"
+            ]
+        ]
+    },
+    {
+        "id": "95b78212.661fe",
+        "type": "function",
+        "z": "841a5030.b3b67",
+        "name": "Prepare for Telegram",
+        "func": "msg.payload = {\n  chatId : msg.chatId,\n  type : \"message\",\n  content : msg.payload.output.text[0]};\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 600,
+        "y": 360,
+        "wires": [
+            [
+                "1aaf335e.64541d"
+            ]
+        ]
+    },
+    {
+        "id": "1aaf335e.64541d",
+        "type": "telegram sender",
+        "z": "841a5030.b3b67",
+        "name": "",
+        "bot": "6cb8f25f.558b1c",
+        "x": 1130,
+        "y": 360,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "1d11cb24.f569f5",
+        "type": "switch",
+        "z": "841a5030.b3b67",
+        "name": "",
+        "property": "payload.context.action",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "translate",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "music",
+                "vt": "str"
+            },
+            {
+                "t": "else"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 3,
+        "x": 390,
+        "y": 200,
+        "wires": [
+            [
+                "68ba16de.a120d8"
+            ],
+            [
+                "e2bcb6e6.0a2218"
+            ],
+            [
+                "95b78212.661fe"
+            ]
+        ]
+    },
+    {
+        "id": "68ba16de.a120d8",
+        "type": "function",
+        "z": "841a5030.b3b67",
+        "name": "Prepare for Translator",
+        "func": "msg.srclang = getLanguage(msg.payload.context.source);\nmsg.destlang = getLanguage(msg.payload.context.destination);\nmsg.payload = msg.payload.input.text;\n\nreturn msg;\n\nfunction getLanguage(lang) {\n    switch (lang.toLowerCase()) {\n        case \"french\":\n            return \"fr\";\n        case \"italian\":\n            return \"it\";\n        case \"spanish\":\n            return \"es\";\n    }\n    return \"en\";\n}",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 560,
+        "y": 100,
+        "wires": [
+            [
+                "74f27803.3e4be8"
+            ]
+        ]
+    },
+    {
+        "id": "74f27803.3e4be8",
+        "type": "watson-translator",
+        "z": "841a5030.b3b67",
+        "name": "",
+        "action": "translate",
+        "basemodel": "ar-en",
+        "domain": "general",
+        "srclang": "ar",
+        "destlang": "en",
+        "password": "",
+        "apikey": "",
+        "custom": "",
+        "domainhidden": "general",
+        "srclanghidden": "ar",
+        "destlanghidden": "en",
+        "basemodelhidden": "ar-en",
+        "customhidden": "",
+        "filetype": "forcedglossary",
+        "trainid": "",
+        "lgparams2": true,
+        "service-endpoint": "",
+        "x": 650,
+        "y": 200,
+        "wires": [
+            [
+                "7c6d24c0.ce1b1c",
+                "cd2ec38b.96077"
+            ]
+        ]
+    },
+    {
+        "id": "7c6d24c0.ce1b1c",
+        "type": "function",
+        "z": "841a5030.b3b67",
+        "name": "Prepare for Telegram 2",
+        "func": "msg.payload = {\n chatId : msg.chatId,\n type : \"message\",\n content : msg.payload\n};\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 880,
+        "y": 280,
+        "wires": [
+            [
+                "1aaf335e.64541d"
+            ]
+        ]
+    },
+    {
+        "id": "cd2ec38b.96077",
+        "type": "function",
+        "z": "841a5030.b3b67",
+        "name": "Clear Conversation Context",
+        "func": "msg.payload = \"hi\";\nmsg.params = {\n    context : {}\n}\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 940,
+        "y": 140,
+        "wires": [
+            [
+                "ccff8efb.ab62b"
+            ]
+        ]
+    },
+    {
+        "id": "ccff8efb.ab62b",
+        "type": "watson-conversation-v1",
+        "z": "841a5030.b3b67",
+        "name": "conversation 2",
+        "workspaceid": "ba14d93f-1450-4783-9c1e-50c1e671c4d3",
+        "multiuser": true,
+        "context": true,
+        "empty-payload": true,
+        "service-endpoint": "",
+        "timeout": "",
+        "optout-learning": true,
+        "x": 1200,
+        "y": 60,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "e2bcb6e6.0a2218",
+        "type": "function",
+        "z": "841a5030.b3b67",
+        "name": "Prepare for Spotify",
+        "func": "msg.genre = msg.payload.context.genre;\nmsg.headers = {\n \"Authorization\" : \"Bearer BQDzo1DVvIoySkqkDTqnwKNm6bTPnCRa8rJYaiGIvCDu-7dGQd6Q5QbT93B3G03ryw0E-nCMV2kfwjsI-PHI0p9ixgDQG7LPBfNJ3JY1chD7d3g1lF7t0nYDvIkGZ11Bd4bZH_ph83sVG3jVctSZE1ogRlhYXCQ\"\n};\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 250,
+        "y": 440,
+        "wires": [
+            [
+                "e146cbe7.e56cb8"
+            ]
+        ]
+    },
+    {
+        "id": "e146cbe7.e56cb8",
+        "type": "http request",
+        "z": "841a5030.b3b67",
+        "name": "Spotify Search API",
+        "method": "GET",
+        "ret": "obj",
+        "paytoqs": false,
+        "url": "https://api.spotify.com/v1/search?type=track&market=MY&limit=10&q=genre:{{{genre}}}",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "authType": "",
+        "x": 470,
+        "y": 440,
+        "wires": [
+            [
+                "68fe75b8.ad32ec",
+                "cd2ec38b.96077"
+            ]
+        ]
+    },
+    {
+        "id": "68fe75b8.ad32ec",
+        "type": "function",
+        "z": "841a5030.b3b67",
+        "name": "Prepare for Telegram 3",
+        "func": "var items = msg.payload.tracks.items;\nvar rndm = Math.floor((Math.random() * items.length));\nvar item = items[rndm];\nvar artists = [];\nfor (var i in item.artists) {\n artists.push(item.artists[i].name);\n}\ntitle = item.name;\ncontent = \"I have found \" + title + \" by \" + artists.join(\", \") + \".\";\nif (item.external_urls && item.external_urls.spotify) {\n content += \"\\nClick on the following link to open it on Spotify:\\n\" + item.external_urls.spotify;\n}\nmsg.payload = {\n chatId : msg.chatId,\n type : \"message\",\n content : content\n};\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 740,
+        "y": 480,
+        "wires": [
+            [
+                "1aaf335e.64541d"
+            ]
+        ]
+    },
+    {
+        "id": "6cb8f25f.558b1c",
+        "type": "telegram bot",
+        "z": "",
+        "botname": "UFPB_Bot",
+        "usernames": "",
+        "chatids": "",
+        "baseapiurl": "",
+        "updatemode": "polling",
+        "pollinterval": "300",
+        "usesocks": false,
+        "sockshost": "",
+        "socksport": "6667",
+        "socksusername": "anonymous",
+        "sockspassword": "",
+        "bothost": "",
+        "localbotport": "8443",
+        "publicbotport": "8443",
+        "privatekey": "",
+        "certificate": "",
+        "useselfsignedcertificate": false,
+        "sslterminated": false,
+        "verboselogging": false
+    }
+]

@@ -1,0 +1,427 @@
+[
+    {
+        "id": "dafa993f.70bab8",
+        "type": "tab",
+        "label": "Requisições",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "920b1145.f377",
+        "type": "http in",
+        "z": "dafa993f.70bab8",
+        "name": "",
+        "url": "/salvardadopost",
+        "method": "post",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 120,
+        "y": 220,
+        "wires": [
+            [
+                "bad48639.28bce8",
+                "f77c158a.88bd58",
+                "541117f3.850178"
+            ]
+        ]
+    },
+    {
+        "id": "bad48639.28bce8",
+        "type": "http response",
+        "z": "dafa993f.70bab8",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 310,
+        "y": 280,
+        "wires": []
+    },
+    {
+        "id": "f77c158a.88bd58",
+        "type": "cloudant out",
+        "z": "dafa993f.70bab8",
+        "name": "",
+        "cloudant": "",
+        "database": "dadospost",
+        "service": "node-red-vflsh-cloudant-1589287268644-12109",
+        "payonly": true,
+        "operation": "insert",
+        "x": 370,
+        "y": 200,
+        "wires": []
+    },
+    {
+        "id": "541117f3.850178",
+        "type": "debug",
+        "z": "dafa993f.70bab8",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "x": 330,
+        "y": 120,
+        "wires": []
+    },
+    {
+        "id": "34f9b64b.063c1a",
+        "type": "http in",
+        "z": "dafa993f.70bab8",
+        "name": "",
+        "url": "/salvardado",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 100,
+        "y": 480,
+        "wires": [
+            [
+                "f995f43a.47c898",
+                "47c6bd57.cbe774",
+                "262c875c.57da48"
+            ]
+        ]
+    },
+    {
+        "id": "262c875c.57da48",
+        "type": "http response",
+        "z": "dafa993f.70bab8",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 310,
+        "y": 560,
+        "wires": []
+    },
+    {
+        "id": "47c6bd57.cbe774",
+        "type": "cloudant out",
+        "z": "dafa993f.70bab8",
+        "name": "",
+        "cloudant": "",
+        "database": "dadosget",
+        "service": "node-red-vflsh-cloudant-1589287268644-12109",
+        "payonly": true,
+        "operation": "insert",
+        "x": 340,
+        "y": 480,
+        "wires": []
+    },
+    {
+        "id": "f995f43a.47c898",
+        "type": "debug",
+        "z": "dafa993f.70bab8",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "x": 330,
+        "y": 400,
+        "wires": []
+    },
+    {
+        "id": "9d8a6c8f.df6a7",
+        "type": "http in",
+        "z": "dafa993f.70bab8",
+        "name": "",
+        "url": "/dadodelete",
+        "method": "delete",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 130,
+        "y": 760,
+        "wires": [
+            [
+                "71f23132.52556",
+                "b760fcff.dbb54",
+                "a3c2c4fa.bac228"
+            ]
+        ]
+    },
+    {
+        "id": "b760fcff.dbb54",
+        "type": "debug",
+        "z": "dafa993f.70bab8",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "x": 350,
+        "y": 700,
+        "wires": []
+    },
+    {
+        "id": "a3c2c4fa.bac228",
+        "type": "cloudant out",
+        "z": "dafa993f.70bab8",
+        "name": "",
+        "cloudant": "",
+        "database": "dadosget",
+        "service": "node-red-vflsh-cloudant-1589287268644-12109",
+        "payonly": false,
+        "operation": "delete",
+        "x": 360,
+        "y": 760,
+        "wires": []
+    },
+    {
+        "id": "71f23132.52556",
+        "type": "http response",
+        "z": "dafa993f.70bab8",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 340,
+        "y": 840,
+        "wires": []
+    },
+    {
+        "id": "631b8d74.2479e4",
+        "type": "debug",
+        "z": "dafa993f.70bab8",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "x": 370,
+        "y": 940,
+        "wires": []
+    },
+    {
+        "id": "b4d8f954.c9a818",
+        "type": "http in",
+        "z": "dafa993f.70bab8",
+        "name": "",
+        "url": "/dadoatualiza",
+        "method": "patch",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 130,
+        "y": 1040,
+        "wires": [
+            [
+                "631b8d74.2479e4",
+                "2d6189c9.5cfe36",
+                "f29e70d6.5bfac"
+            ]
+        ]
+    },
+    {
+        "id": "2d6189c9.5cfe36",
+        "type": "http response",
+        "z": "dafa993f.70bab8",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 370,
+        "y": 1120,
+        "wires": []
+    },
+    {
+        "id": "f29e70d6.5bfac",
+        "type": "cloudant out",
+        "z": "dafa993f.70bab8",
+        "name": "",
+        "cloudant": "",
+        "database": "dadospost",
+        "service": "node-red-vflsh-cloudant-1589287268644-12109",
+        "payonly": true,
+        "operation": "insert",
+        "x": 390,
+        "y": 1040,
+        "wires": []
+    },
+    {
+        "id": "10070575.46d39b",
+        "type": "http in",
+        "z": "dafa993f.70bab8",
+        "name": "",
+        "url": "/listadados",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 100,
+        "y": 1340,
+        "wires": [
+            [
+                "37b03661.5a7e5a",
+                "be99ecee.3542e"
+            ]
+        ]
+    },
+    {
+        "id": "de60e746.a56b48",
+        "type": "http response",
+        "z": "dafa993f.70bab8",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 370,
+        "y": 1480,
+        "wires": []
+    },
+    {
+        "id": "37b03661.5a7e5a",
+        "type": "debug",
+        "z": "dafa993f.70bab8",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "x": 350,
+        "y": 1240,
+        "wires": []
+    },
+    {
+        "id": "be99ecee.3542e",
+        "type": "cloudant in",
+        "z": "dafa993f.70bab8",
+        "name": "",
+        "cloudant": "",
+        "database": "dadospost",
+        "service": "node-red-vflsh-cloudant-1589287268644-12109",
+        "search": "_all_",
+        "design": "",
+        "index": "",
+        "x": 370,
+        "y": 1380,
+        "wires": [
+            [
+                "de60e746.a56b48"
+            ]
+        ]
+    },
+    {
+        "id": "9af02efa.ec332",
+        "type": "http in",
+        "z": "dafa993f.70bab8",
+        "name": "",
+        "url": "/salvar",
+        "method": "post",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 70,
+        "y": 1800,
+        "wires": [
+            [
+                "ef4b4968.db4338",
+                "23b4e21.56aef1e"
+            ]
+        ]
+    },
+    {
+        "id": "ef4b4968.db4338",
+        "type": "http response",
+        "z": "dafa993f.70bab8",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 330,
+        "y": 1660,
+        "wires": []
+    },
+    {
+        "id": "5df9f19f.a551e",
+        "type": "debug",
+        "z": "dafa993f.70bab8",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "x": 590,
+        "y": 1760,
+        "wires": []
+    },
+    {
+        "id": "28520a99.e104f6",
+        "type": "debug",
+        "z": "dafa993f.70bab8",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "x": 450,
+        "y": 1960,
+        "wires": []
+    },
+    {
+        "id": "23b4e21.56aef1e",
+        "type": "switch",
+        "z": "dafa993f.70bab8",
+        "name": "",
+        "property": "payload.length",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "gt",
+                "v": "1",
+                "vt": "str"
+            },
+            {
+                "t": "else"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 250,
+        "y": 1860,
+        "wires": [
+            [
+                "9e4b4f8e.664a8"
+            ],
+            [
+                "28520a99.e104f6",
+                "5e0038da.5d4d78"
+            ]
+        ]
+    },
+    {
+        "id": "5e0038da.5d4d78",
+        "type": "cloudant out",
+        "z": "dafa993f.70bab8",
+        "name": "",
+        "cloudant": "",
+        "database": "multidados",
+        "service": "node-red-vflsh-cloudant-1589287268644-12109",
+        "payonly": true,
+        "operation": "insert",
+        "x": 570,
+        "y": 1880,
+        "wires": []
+    },
+    {
+        "id": "9e4b4f8e.664a8",
+        "type": "split",
+        "z": "dafa993f.70bab8",
+        "name": "",
+        "splt": ",",
+        "spltType": "str",
+        "arraySplt": 1,
+        "arraySpltType": "len",
+        "stream": false,
+        "addname": "",
+        "x": 390,
+        "y": 1800,
+        "wires": [
+            [
+                "5e0038da.5d4d78",
+                "5df9f19f.a551e"
+            ]
+        ]
+    }
+]

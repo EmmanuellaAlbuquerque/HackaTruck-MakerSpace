@@ -1,0 +1,245 @@
+[
+    {
+        "id": "a2c07b21.10e348",
+        "type": "tab",
+        "label": "Aula STT/TTS",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "6564f0d4.a9f11",
+        "type": "microphone",
+        "z": "a2c07b21.10e348",
+        "name": "",
+        "x": 370,
+        "y": 120,
+        "wires": [
+            [
+                "384f7b31.7e4eb4"
+            ]
+        ]
+    },
+    {
+        "id": "384f7b31.7e4eb4",
+        "type": "watson-speech-to-text",
+        "z": "a2c07b21.10e348",
+        "name": "",
+        "alternatives": 1,
+        "speakerlabels": false,
+        "smartformatting": false,
+        "lang": "pt-BR",
+        "langhidden": "pt-BR",
+        "langcustom": "NoCustomisationSetting",
+        "langcustomhidden": "",
+        "custom-weight": "0.5",
+        "band": "BroadbandModel",
+        "bandhidden": "BroadbandModel",
+        "keywords": "",
+        "keywords-threshold": "0.5",
+        "word-confidence": false,
+        "password": "",
+        "apikey": "GGN4aaukNGPQBH7r3NNyXyztuD5nU1nrUlfgaFLe9sEc",
+        "payload-response": false,
+        "streaming-mode": false,
+        "streaming-mute": true,
+        "auto-connect": false,
+        "discard-listening": false,
+        "disable-precheck": false,
+        "service-endpoint": "",
+        "x": 620,
+        "y": 180,
+        "wires": [
+            [
+                "1d9f28c7.9b60d7"
+            ]
+        ]
+    },
+    {
+        "id": "1d9f28c7.9b60d7",
+        "type": "debug",
+        "z": "a2c07b21.10e348",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "transcription",
+        "targetType": "msg",
+        "x": 870,
+        "y": 180,
+        "wires": []
+    },
+    {
+        "id": "496879d2.0c9a18",
+        "type": "inject",
+        "z": "a2c07b21.10e348",
+        "name": "",
+        "topic": "",
+        "payload": "Ola Mundo",
+        "payloadType": "str",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 380,
+        "y": 420,
+        "wires": [
+            [
+                "8cab8a50.21c578"
+            ]
+        ]
+    },
+    {
+        "id": "8cab8a50.21c578",
+        "type": "watson-text-to-speech",
+        "z": "a2c07b21.10e348",
+        "name": "",
+        "lang": "pt-BR",
+        "langhidden": "pt-BR",
+        "langcustom": "NoCustomisationSetting",
+        "langcustomhidden": "",
+        "voice": "pt-BR_IsabelaV3Voice",
+        "voicehidden": "",
+        "format": "audio/wav",
+        "password": "",
+        "apikey": "5r4mk7rIoA_nM8iJ9b6jHSXN12hJF3rqiUdg9CV1EeKX",
+        "payload-response": false,
+        "service-endpoint": "",
+        "x": 620,
+        "y": 440,
+        "wires": [
+            [
+                "c0bb6f2a.cd481"
+            ]
+        ]
+    },
+    {
+        "id": "c0bb6f2a.cd481",
+        "type": "play audio",
+        "z": "a2c07b21.10e348",
+        "name": "",
+        "voice": "14",
+        "x": 840,
+        "y": 460,
+        "wires": []
+    },
+    {
+        "id": "866d6b98.3ea048",
+        "type": "microphone",
+        "z": "a2c07b21.10e348",
+        "name": "",
+        "x": 350,
+        "y": 620,
+        "wires": [
+            [
+                "3fe2eecb.0eabb2"
+            ]
+        ]
+    },
+    {
+        "id": "dca8ef5e.254de",
+        "type": "fileinject",
+        "z": "a2c07b21.10e348",
+        "name": "",
+        "x": 360,
+        "y": 720,
+        "wires": [
+            [
+                "3fe2eecb.0eabb2"
+            ]
+        ]
+    },
+    {
+        "id": "3fe2eecb.0eabb2",
+        "type": "watson-speech-to-text",
+        "z": "a2c07b21.10e348",
+        "name": "",
+        "alternatives": 1,
+        "speakerlabels": false,
+        "smartformatting": false,
+        "lang": "pt-BR",
+        "langhidden": "pt-BR",
+        "langcustom": "NoCustomisationSetting",
+        "langcustomhidden": "",
+        "custom-weight": "0.5",
+        "band": "BroadbandModel",
+        "bandhidden": "BroadbandModel",
+        "keywords": "",
+        "keywords-threshold": "0.5",
+        "word-confidence": false,
+        "password": "",
+        "apikey": "GGN4aaukNGPQBH7r3NNyXyztuD5nU1nrUlfgaFLe9sEc",
+        "payload-response": true,
+        "streaming-mode": false,
+        "streaming-mute": true,
+        "auto-connect": false,
+        "discard-listening": false,
+        "disable-precheck": false,
+        "service-endpoint": "",
+        "x": 600,
+        "y": 680,
+        "wires": [
+            [
+                "8bef7e3b.c0712"
+            ]
+        ]
+    },
+    {
+        "id": "dd83de7d.b5d8a",
+        "type": "debug",
+        "z": "a2c07b21.10e348",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "x": 970,
+        "y": 880,
+        "wires": []
+    },
+    {
+        "id": "8bef7e3b.c0712",
+        "type": "watson-translator",
+        "z": "a2c07b21.10e348",
+        "name": "",
+        "action": "translate",
+        "basemodel": "ar-en",
+        "domain": "general",
+        "srclang": "pt",
+        "destlang": "en",
+        "password": "",
+        "apikey": "",
+        "custom": "",
+        "domainhidden": "general",
+        "srclanghidden": "pt",
+        "destlanghidden": "en",
+        "basemodelhidden": "ar-en",
+        "customhidden": "",
+        "filetype": "forcedglossary",
+        "trainid": "",
+        "lgparams2": true,
+        "service-endpoint": "",
+        "x": 810,
+        "y": 760,
+        "wires": [
+            [
+                "dd83de7d.b5d8a"
+            ]
+        ]
+    },
+    {
+        "id": "6a4e0e63.17f3",
+        "type": "fileinject",
+        "z": "a2c07b21.10e348",
+        "name": "",
+        "x": 340,
+        "y": 200,
+        "wires": [
+            [
+                "384f7b31.7e4eb4"
+            ]
+        ]
+    }
+]
